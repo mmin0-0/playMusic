@@ -1,6 +1,6 @@
 import { MusicList } from '../components/MusicList/Playlist.jsx';
 
-function MyPlaylist({ playlists, onPlaylistClick, savedPlaylists }) {
+function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
   return (
     <section>
       <div className="tit-wrap">

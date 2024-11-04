@@ -1,9 +1,7 @@
 import { useEffect } from "react";
-import styled from 'styled-components';
-import media from '../styles/media.js';
 import useYoutubeSearch from "../hooks/useYoutubeSearch.js";
-import { MusicList } from '../components/MusicList/Playlist.jsx';
-import { Loading, Empty } from '../components/common/StatusMessage.jsx';
+import { MusicList } from '../components/Playlist.jsx';
+import { Loading, Empty } from '../components/StatusMessage.jsx';
 
 function Home({onPlaylistClick}) {
   const { playlists, searchPlaylists, loading, error } = useYoutubeSearch();

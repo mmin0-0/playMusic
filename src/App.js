@@ -44,7 +44,6 @@ function App() {
               />} />
               <Route path="/playlist" element={<MyPlaylist 
                 onPlaylistClick={handlePlaylistClick} 
-                playlists={myPlaylists} 
                 savedPlaylists={myPlaylists}
               />} />
               <Route path="/search" element={<Search 

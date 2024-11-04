@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import media from '../../../styles/media.js';
+import media from '../styles/media.js';
 
 const Closed = styled.button`
   width: 2rem;

@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components';
-import media from '../../styles/media.js';
-import { BtnSave, Controls } from './Buttons/Btns.jsx';
+import media from '../styles/media.js';
+import { BtnSave, Controls } from './Button.jsx';
 import { useEffect, useRef, useState } from 'react';
 
 const playing = keyframes`

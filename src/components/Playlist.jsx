@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import media from '../../styles/media.js';
-import { BtnPlay, BtnSave } from "../common/Buttons/Btns.jsx";
+import media from '../styles/media.js';
+import { BtnPlay, BtnSave } from "./Button.jsx";
 
 const StyledMusicList = styled.ul`
   display: grid;
@@ -14,9 +14,9 @@ export const MusicList = ({ playlists, onPlaylistClick, savedPlaylists = [] }) =
   return (
     <StyledMusicList>
       {
-        playlists.map((playlist) => (
+        playlists.map((playlist, idx) => (
           <MusicItem 
-            key={playlist.id.videoId} 
+            key={idx} 
             playlist={playlist} 
             onClick={() => onPlaylistClick(playlist)}
             isSaved={savedPlaylists.some(saved => saved.id.videoId === playlist.id.videoId)}
@@ -47,7 +47,7 @@ const StyledMusicItem = styled.li`
 const MusicItem = ({ playlist, onClick, isSaved }) => {
   return (
     <StyledMusicItem onClick={onClick}>
-      <a href="javascript:void(0)">
+      <a href="#" onClick={(e)=>e.preventDefault()}>
         <Thumbnail
           thumbnailUrl={playlist.snippet.thumbnails.default.url}
           title={playlist.snippet.title}

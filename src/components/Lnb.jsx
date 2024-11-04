@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import media from '../../styles/media.js';
+import media from '../styles/media.js';
 import { BtnClosed } from './Buttons/Btns.jsx'
 
 const LnbWrap = styled.div`

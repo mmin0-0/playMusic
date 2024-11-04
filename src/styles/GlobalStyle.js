@@ -1,10 +1,14 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
 import reset from 'styled-reset';
 import media from './media.js';
 
-const GlobalStyle = createGlobalStyle `
-  ${reset}
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+const fontImport = styled.div`
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+`;
+
+const GlobalStyle = createGlobalStyle`
+  ${fontImport};
+  ${reset};
 
   *{box-sizing: border-box;}
   html{

@@ -3,17 +3,17 @@
   "name": "Play Music",
   "icons": [
     {
-      "src": "favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon_64x64.png",
+      "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "favicon.png",
+      "src": "favicon_192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon.png",
+      "src": "favicon512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -1,5 +1,3 @@
-import { css } from 'styled-components';
-
 const theme = {
   white: '#ffffff',
   black: '#000000',
