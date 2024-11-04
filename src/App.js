@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-import media from './styles/media.js';
 import { ThemeProvider } from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
@@ -31,22 +29,12 @@ function App() {
     setSelectedPlaylist(playlist);
   };
 
-  const Wrap = styled.div`
-    > button{
-      display: none;
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      img{max-width: 100%;}
-      ${media.lg`display: block;`}
-    }
-  `;
   return (
     <>
     <ThemeProvider theme={theme}>
     <GlobalStyle />
       <div id="wrapper">
-        <Wrap id="wrap">
+        <div id="wrap">
           <DefaultBtn onClick={toggleLnb} size="medium">
             <Image src="menu_icon.svg" alt="menu toggle" />
           </DefaultBtn>
@@ -72,7 +60,7 @@ function App() {
               isSaved={myPlaylists.some((p) => p.id.playlistId === selectedPlaylist?.id.playlistId)}
             />
           </div>
-        </Wrap>
+        </div>
       </div>
     </ThemeProvider>
     </>

@@ -2,7 +2,9 @@ import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import media from '../styles/media.js';
 import { DefaultBtn } from './Button.jsx';
-import { Image } from './Image.jsx';
+import { Image, ImgWrap } from './Image.jsx';
+import { spacing, blank, flexBox, border } from '../styles/utils.js';
+import { Span } from './Text';
 
 const LnbWrap = styled.div`
   width: 12rem;
@@ -13,9 +15,10 @@ const LnbWrap = styled.div`
   top: 50%;
   z-index: 10;
   transform: translateY(-50%);
-  padding: 4rem 2rem;
-  background: ${({ theme }) => theme.black};
-  border: 1px solid ${({ theme }) => theme.mainColor};
+  ${blank.py(4,4)};
+  ${blank.px(2,2)};
+  background: ${({ theme }) => theme.colors.black};
+  ${border('1px', 'solid',({ theme }) => theme.colors.mainColor)};
   ${media.lg`
     height: 100vh;
     left: -12rem;
@@ -25,7 +28,10 @@ const LnbWrap = styled.div`
     border: 0;
     border-radius: 0;
     transition: left .35s;
-    &.on{left: 0;}
+    &.on{
+      left: 0;
+      z-index: 10;
+    }
   `}
   > button{
     position: absolute;
@@ -43,23 +49,19 @@ const LnbWrap = styled.div`
     .img-wrap{
       width: 4rem;
       height: 4rem;
-      margin: 0 auto 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      ${spacing.ma};
+      ${spacing.mb(1.2)};
+      ${flexBox('row','center','center', '','')}
       border-radius: 50%;
-      background: ${({ theme }) => theme.mainColor};
+      background: ${({ theme }) => theme.colors.mainColor};
       img{width: 70%;}
     }
-    span{font-size: 1.4rem;}
   }
 `;
 
 const NavWrap = styled.nav`
-  margin-top: 8rem;
-  a{
-    &:not(:first-child){margin-top: 4rem;}
-  }
+  ${spacing.mt(8)};
+  a{&:not(:first-child){${spacing.mt(4)}}}
 `;
 
 const Link = ({ isActive, children, ...props }) => {
@@ -73,21 +75,21 @@ const StyledLink = styled(Link)`
   opacity: ${(props) => (props.isActive ? 1 : .45)};
   &:hover{
     opacity: 1;
-    .icon{filter: ${({theme}) => theme.onFilter};}
+    .icon{filter: ${({theme}) => theme.colors.onFilter};}
   }
   .icon{
     width: 2.8rem;
     height: 2.8rem;
     display: block;
-    margin: 0 auto 1.2rem;
-    filter: ${(props) => (props.isActive ? ({theme}) => theme.onFilter : 'none')};
-    ${media.sm`margin: 0 auto .6rem;`}
+    ${spacing.ma};
+    ${spacing.mb(1.2)};
+    filter: ${(props) => (props.isActive ? ({theme}) => theme.colors.onFilter : 'none')};
+    ${media.sm`${spacing.mb(.6)}  `}
   }
   span{
-    font-size: 1.4rem;
     ${media.sm`
-      font-weight: 500;
-      font-size: 1.2rem;  
+      font-weight: ${({theme}) => theme.fontWeight.medium};
+      font-size: ${({theme}) => theme.fontSize.xs};  
     `}
   }
 `;
@@ -107,18 +109,16 @@ function Lnb({lnbActive, toggleLnb}) {
         </DefaultBtn>
         <div className="logo">
           <Link to="/">
-            <div className="img-wrap">
-              <img src={`${process.env.PUBLIC_URL}/images/headset_icon.svg`} alt="Logo" />
-            </div>
-            <span>Today music</span>
+            <ImgWrap src="headset_icon.svg" alt="today music" />
+            <Span>Today music</Span>
           </Link>
         </div>
         <NavWrap>
           {
             lnbMenu.map((item) => (
               <StyledLink to={item.path} key={item.path} isActive={pathname === item.path}>
-                <img className="icon" src={`${process.env.PUBLIC_URL}/images/lnb_${item.tit}_icon.svg`} alt={`${item.tit}`} />
-                <span>{item.name}</span>
+                <Image src={`lnb_${item.tit}_icon.svg`} alt={item.tit} className="icon" />
+                <Span>{item.name}</Span>
               </StyledLink>
             ))
           }

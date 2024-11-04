@@ -1,48 +1,51 @@
-import { createGlobalStyle, styled } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import reset from 'styled-reset';
 import media from './media.js';
 
-const fontImport = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Noto+Sans+KR:wght@100..900&display=swap');
-`;
-
 const GlobalStyle = createGlobalStyle`
-  ${fontImport};
   ${reset};
 
-  *{box-sizing: border-box;}
-  html{
+  * {
+    box-sizing: border-box;
+  }
+  html {
     font-size: 10px;
     scroll-behavior: smooth;
   }
-  body{
+  body {
     font-size: 1.6rem;
     line-height: 1;
     word-break: keep-all;
     letter-spacing: -0.02em;
-    *{
-      font-family: "Noto Sans KR", sans-serif;
-      font-weight: 400;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: .2rem;
+    border: 3px solid ${({ theme }) => theme.colors.darkgrey};
+    background: ${({ theme }) => theme.colors.mainColor};
+    &:hover {
+      background: #0E8561;
     }
   }
-  ::-webkit-scrollbar{width: 10px}
-  ::-webkit-scrollbar-thumb{
-    border-radius: .2rem;
-    border: 3px solid ${({theme}) => theme.darkgrey};
-    background: ${({theme}) => theme.mainColor};
-    &:hover{background: #0E8561;}
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.darkgrey};
   }
-  ::-webkit-scrollbar-track{background: ${({theme}) => theme.darkgrey};}
 
-  input, textarea { 
+  input, textarea {
     -moz-user-select: auto;
     -webkit-user-select: auto;
     -ms-user-select: auto;
     user-select: auto;
   }
-  input:focus {outline: none;}
+  input:focus {
+    outline: none;
+  }
 
-  a{
+  a {
     text-decoration: none;
     color: inherit;
   }
@@ -53,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
   }
-  
+
   .hide {
     position: absolute;
     width: 1px!important;
@@ -65,16 +68,28 @@ const GlobalStyle = createGlobalStyle`
     clip-path: polygon(0 0, 0 0, 0 0);
   }
 
-  .img-wrap{
-    img{max-width: 100%;}
+  .img-wrap {
+    img {
+      max-width: 100%;
+    }
   }
-  
-  #wrap{
-    background: ${({ theme }) => theme.black};
-    color: ${({ theme }) => theme.white};
+
+  #wrap {
+    background: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
     height: 100vh;
     display: flex;
-    .container{
+    > button {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      img {
+        max-width: 100%;
+      }
+      ${media.lg`display: block;`}
+    }
+    .container {
       width: 100%;
       margin-left: 14rem;
       padding: 2rem 4rem 18rem;
@@ -83,18 +98,11 @@ const GlobalStyle = createGlobalStyle`
         margin-left: 0;
         padding: 4rem 2rem 14rem 5rem;
       `}
-      section{
-        .tit-wrap{
-          strong{
-            font-size: 2.2rem;
-            font-weight: 600;
-            line-height: 1.6;
-          }
-        }
-        .cont-wrap{
+      section {
+        .cont-wrap {
           margin-top: 2.6rem;
           padding-top: 2.6rem;
-          border-top: 1px solid ${({ theme }) => theme.grey};
+          border-top: 1px solid ${({ theme }) => theme.colors.darkgrey};
         }
       }
     }

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useYoutubeSearch from "../hooks/useYoutubeSearch.js";
 import { MusicList } from '../components/Playlist.jsx';
 import { Loading, Empty } from '../components/StatusMessage.jsx';
+import { TitWrap } from "../components/Text.jsx";
 
 function Home({onPlaylistClick}) {
   const { playlists, searchPlaylists, loading, error } = useYoutubeSearch();
@@ -12,9 +13,10 @@ function Home({onPlaylistClick}) {
 
   return (
     <section>
-      <div className="tit-wrap">
+      <TitWrap text="오늘의 플레이리스트를 추천합니다😊" />
+      {/* <div className="tit-wrap">
         <strong>오늘의 플레이리스트를 추천합니다😊</strong>
-      </div>
+      </div> */}
       <div className="cont-wrap">
         {loading && <Loading />}
         {error && <Empty 
