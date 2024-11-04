@@ -14,9 +14,6 @@ function Home({onPlaylistClick}) {
   return (
     <section>
       <TitWrap text="오늘의 플레이리스트를 추천합니다😊" />
-      {/* <div className="tit-wrap">
-        <strong>오늘의 플레이리스트를 추천합니다😊</strong>
-      </div> */}
       <div className="cont-wrap">
         {loading && <Loading />}
         {error && <Empty 

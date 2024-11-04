@@ -1,14 +1,58 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import media from '../styles/media.js';
 import { DefaultBtn } from "./Button.jsx";
 import { Image } from './Image.jsx';
+import { spacing, border } from '../styles/utils.js';
+import { Span, P } from './Text.jsx';
 
 const StyledMusicList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: clamp(2rem, 2%, 4rem);
-  ${media.lg`grid-template-columns: repeat(2, 1fr);`}
-  ${media.sm`grid-template-columns: 1fr;`}
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+`;
+
+const StyledMusicItem = styled.li`
+  background: ${({ theme }) => theme.darkgrey};
+  border-radius: 2rem;
+  ${border('1px', 'solid',({ theme }) => theme.colors.darkgrey)};
+  transition: all .25s;
+  &:hover{
+    transform: translateY(-1rem);
+    border-color: ${({ theme }) => theme.mainColor};
+  }
+  a{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+  }
+`;
+
+const ThumbnailWrap = styled.div`
+  width: 100%;
+  .thumbnail{
+    height: 12rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+`;
+
+const ThumbnailInfo = styled.div`
+  ${spacing.mt(2)};
+  span{
+    display: block;
+    ${spacing.mt(2.4)};
+    color: ${({ theme }) => theme.colors.grey};
+  }
+`;
+
+const ControlsWrap = styled.div`
+  button{&:not(:first-child){${spacing.mt(1)};}}
 `;
 
 export const MusicList = ({ playlists, onPlaylistClick, savedPlaylists = [] }) => {
@@ -28,82 +72,34 @@ export const MusicList = ({ playlists, onPlaylistClick, savedPlaylists = [] }) =
   )
 };
 
-const StyledMusicItem = styled.li`
-  background: ${({ theme }) => theme.darkgrey};
-  border-radius: 2rem;
-  border: 1px solid ${({ theme }) => theme.darkgrey};
-  transition: all .25s;
-  &:hover{
-    transform: translateY(-1rem);
-    border-color: ${({ theme }) => theme.mainColor};;
-  }
-  a{
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-    padding: 2rem;
-  }
-`;
-
 const MusicItem = ({ playlist, onClick, isSaved }) => {
   return (
     <StyledMusicItem onClick={onClick}>
-      <a href="#" onClick={(e)=>e.preventDefault()}>
+      <Link to="#">
         <Thumbnail
           thumbnailUrl={playlist.snippet.thumbnails.default.url}
           title={playlist.snippet.title}
           channelTitle={playlist.snippet.channelTitle}
         />
         <Controls isSaved={isSaved} />
-      </a>
+      </Link>
     </StyledMusicItem>
   )
 };
-
-const ThumbnailWrap = styled.div`
-  width: 100%;
-  .thumbnail{
-    height: 12rem;
-    border-radius: 2rem;
-    overflow: hidden;
-    img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-`;
-
-const ThumbnailInfo = styled.div`
-  margin-top: 2rem;
-  p{line-height: 1.6;}
-  span{
-    display: block;
-    margin-top: 2.4rem;
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.grey};
-  }
-`;
 
 const Thumbnail = ({ thumbnailUrl, title, channelTitle }) => {
   return (
     <ThumbnailWrap>
       <div className="thumbnail">
-        <img src={thumbnailUrl} alt={title} />
+        <Image src={thumbnailUrl} alt={title} />
       </div>
       <ThumbnailInfo>
-        <p>{title}</p>
-        <span>{channelTitle}</span>
+        <P lineHeight="1.6">{title}</P>
+        <Span>{channelTitle}</Span>
       </ThumbnailInfo>
     </ThumbnailWrap>
   )
 };
-
-const ControlsWrap = styled.div`
-  button{
-    &:not(:first-child){margin-top: 1rem;}
-  }
-`;
 
 const Controls = ({ isSaved }) => {
   return (

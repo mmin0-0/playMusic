@@ -1,15 +1,14 @@
 import { MusicList } from '../components/Playlist.jsx';
+import { TitWrap, P } from '../components/Text.jsx';
 
 function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
   return (
     <section>
-      <div className="tit-wrap">
-        <strong>나의 플레이리스트💿</strong>
-      </div>
+      <TitWrap text="나의 플레이리스트💿" />
       <div className="cont-wrap">
       {
           savedPlaylists.length === 0 ? (
-            <p>플레이리스트가 없습니다.</p>
+            <P>플레이리스트가 없습니다.</P>
           ) : (
             <MusicList 
               playlists={savedPlaylists}
