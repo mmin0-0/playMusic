@@ -1,7 +1,7 @@
 import useYoutubeSearch from "../hooks/useYoutubeSearch.js";
-import { Loading, Empty } from '../components/common/StatusMessage.jsx';
-import { MusicList } from '../components/MusicList/Playlist.jsx';
-import { SearchBar } from "../components/common/SearchBar.jsx";
+import { Loading, Empty } from '../components/StatusMessage.jsx';
+import { MusicList } from '../components/Playlist.jsx';
+import { SearchBar } from "../components/SearchBar.jsx";
 
 function Search({onPlaylistClick}) {
   const { playlists, searchPlaylists, loading, error } = useYoutubeSearch();

@@ -1,4 +1,4 @@
-import { MusicList } from '../components/MusicList/Playlist.jsx';
+import { MusicList } from '../components/Playlist.jsx';
 
 function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
   return (

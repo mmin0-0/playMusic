@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BtnSearch } from './Buttons/Btns.jsx';
+import { BtnSearch } from './Button.jsx';
 import { useState } from 'react';
 
 const SearchInp = styled.div`

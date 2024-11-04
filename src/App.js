@@ -3,12 +3,12 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 import GlobalStyle from "./styles/GlobalStyle.js";
 import theme from "./styles/theme.js";
-import Lnb from './components/common/Lnb.jsx';
-import FixPlayer from './components/common/FixPlayer.jsx';
+import Lnb from './components/Lnb.jsx';
+import FixPlayer from './components/FixPlayer.jsx';
 import Home from "./pages/Home.jsx";
 import MyPlaylist from "./pages/MyPlaylist.jsx";
 import Search from "./pages/Search.jsx";
-import { BtnSideHam } from './components/common/Buttons/Btns.jsx';
+import { BtnSideHam } from './components/Button.jsx';
 
 function App() {
   const [lnbActive, setLnbActive] = useState(false);
