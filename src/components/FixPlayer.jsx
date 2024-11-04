@@ -3,6 +3,8 @@ import media from '../styles/media.js';
 import { Controls, DefaultBtn } from './Button.jsx';
 import { Image } from './Image';
 import { useEffect, useRef, useState } from 'react';
+import { blank, spacing, flexBox, border, ellipsis } from '../styles/utils.js';
+import { P, Span } from './Text.jsx';
 
 const playing = keyframes`
   0 {transform: scale(1.2) rotate(0deg);}
@@ -16,7 +18,7 @@ const PlayerWrap = styled.div`
   left: 18rem;
   bottom: 2rem;
   border-radius: 2rem;
-  padding: 0 2rem;
+  ${blank.px(2,2)}
   backdrop-filter: blur(20px);
   background: hsla(0, 0%, 100%, .1);
   ${media.lg`
@@ -28,18 +30,12 @@ const PlayerWrap = styled.div`
 `;
 const PlayInfo = styled.div`
   height: 100%;
-  gap: 2rem;
-  display: flex;
-  align-items: space-between;
-  justify-content: center;
+  ${flexBox('row', 'center', 'space-between','','2rem')};
   }
 `;
 const PlayerInfo = styled.div`
   width: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 2rem;
+  ${flexBox('row', 'flex-start', 'center','','2rem')};
   ${media.lg`width: 50%;`}
   .thumbnail{
     position: relative;
@@ -50,7 +46,7 @@ const PlayerInfo = styled.div`
     transform: translateY(-35%);
     border-radius: 50%;
     background: ${({ theme }) => theme.grey};
-    border: 1px solid ${({theme}) => theme.mainColor};
+    ${border('1px', 'solid', ({theme}) => theme.mainColor)};
     &.on{img{animation: ${playing} 5s linear infinite;}}
     &::before{
       content: '';
@@ -75,31 +71,16 @@ const PlayerInfo = styled.div`
   .player-info{
     width: calc(100% - 12rem);
     ${media.lg`width: 100%;`}
-    *{
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    p{font-size: 1.4rem;}
-    span{
-      margin-top: 1rem;
-      font-size: 1.2rem;
-    }
+    *{${ellipsis(1)};}
+    span{${spacing.mt(1)}}
   }
 `;
 const PlayerControls = styled.div`
   width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
+  ${flexBox('row', 'flex-end', 'center','','2rem')}
   ${media.lg`width: 50%;`}
   ${media.sm`
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 1rem;
+    ${flexBox('column', 'center', 'flex-end','','1rem')}
   `}
   .player-range{
     min-height: 2rem;
@@ -218,10 +199,10 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
       <PlayerWrap>
         <Empty>
           <div className="thumbnail">
-            <img src={`${process.env.PUBLIC_URL}/images/empty_icon.png`} alt="play now" />
+            <Image src="empty_icon.png" alt="play new" />
           </div>
           <div className="player-info">
-            <p>재생목록이 없습니다.</p>
+            <P fontSize={({theme}) => theme.fontSize.sm}>재생목록이 없습니다.</P>
           </div>
           <div className="player-btns">
             <Controls />
@@ -252,11 +233,11 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
         />
         <PlayerInfo>
           <div className="thumbnail" ref={thumbnailRef}>
-            <img src={selectedPlaylist.snippet.thumbnails.default.url} alt={selectedPlaylist.snippet.title} />
+            <Image src={selectedPlaylist.snippet.thumbnails.default.url} alt={selectedPlaylist.snippet.title} />
           </div>
           <div className="player-info">
-            <p>{selectedPlaylist.snippet.title}</p>
-            <span>{selectedPlaylist.snippet.channelTitle}</span>
+            <P fontSize={({theme}) => theme.fontSize.sm}>{selectedPlaylist.snippet.title}</P>
+            <Span fontSize={({theme}) => theme.fontSize.xs}>{selectedPlaylist.snippet.channelTitle}</Span>
           </div>
         </PlayerInfo>
         <PlayerControls>
