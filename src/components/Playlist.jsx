@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import media from '../styles/media.js';
-import { BtnPlay, BtnSave } from "./Button.jsx";
+import { DefaultBtn } from "./Button.jsx";
+import { Image } from './Image.jsx';
 
 const StyledMusicList = styled.ul`
   display: grid;
@@ -107,8 +108,13 @@ const ControlsWrap = styled.div`
 const Controls = ({ isSaved }) => {
   return (
     <ControlsWrap>
-      <BtnPlay className="play" />
-      <BtnSave className={isSaved ? 'player-add save' : 'player-add'} />
+      <DefaultBtn className="play">
+        <Image src="play_icon.png" alt="play" />
+      </DefaultBtn>
+      <DefaultBtn className={isSaved ? 'player-add save' : 'player-add'}>
+        <Image src="save_icon.svg" alt="save" className="off" />
+        <Image src="save_add_icon.svg" alt="save" className="on" />
+      </DefaultBtn>
     </ControlsWrap>
   )
 };

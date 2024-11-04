@@ -1,6 +1,7 @@
 import styled, {keyframes} from 'styled-components';
 import media from '../styles/media.js';
-import { BtnSave, Controls } from './Button.jsx';
+import { Controls, DefaultBtn } from './Button.jsx';
+import { Image } from './Image';
 import { useEffect, useRef, useState } from 'react';
 
 const playing = keyframes`
@@ -272,7 +273,10 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
           </div>
           <div className="player-btns">
             <Controls onClick={playApi} isPaused={pause} />
-            <BtnSave className={`player-add ${saveButtonClass}`} onClick={handleSave} />
+            <DefaultBtn className={`player-add ${saveButtonClass}`} onClick={handleSave}>
+              <Image src="save_icon.svg" alt="save" className="off" />
+              <Image src="save_add_icon.svg" alt="save" className="on" />
+            </DefaultBtn>
           </div>
         </PlayerControls>
       </PlayInfo>

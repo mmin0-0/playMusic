@@ -1,7 +1,8 @@
 import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import media from '../styles/media.js';
-import { BtnClosed } from './Button.jsx';
+import { DefaultBtn } from './Button.jsx';
+import { Image } from './Image.jsx';
 
 const LnbWrap = styled.div`
   width: 12rem;
@@ -26,7 +27,7 @@ const LnbWrap = styled.div`
     transition: left .35s;
     &.on{left: 0;}
   `}
-  .btn-closed{
+  > button{
     position: absolute;
     top: 1.2rem;
     right: 1rem;
@@ -101,7 +102,9 @@ function Lnb({lnbActive, toggleLnb}) {
   return (
     <>
       <LnbWrap id="lnb" className={lnbActive ? 'on' : ''}>
-        <BtnClosed className="btn-closed" onClick={toggleLnb} />
+        <DefaultBtn onClick={toggleLnb}>
+          <Image src="closed_icon.png" alt="closed" />
+        </DefaultBtn>
         <div className="logo">
           <Link to="/">
             <div className="img-wrap">

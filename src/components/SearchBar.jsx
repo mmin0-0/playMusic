@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { BtnSearch } from './Button.jsx';
+import { DefaultBtn } from './Button.jsx';
+import { Image } from './Image.jsx';
 import { useState } from 'react';
 
 const SearchInp = styled.div`
@@ -36,7 +37,9 @@ export const SearchBar = ({onChange, searchPlaylists}) => {
         onChange={(e)=>{setQuery(e.target.value)}}
         placeholder="검색어를 입력해주세요."
       />
-      <BtnSearch onClick={handleSearch} />
+      <DefaultBtn onClick={handleSearch} size="large">
+        <Image src="search_icon.svg" alt="search" />
+      </DefaultBtn>
     </SearchInp>
   )
 };

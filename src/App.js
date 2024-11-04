@@ -1,5 +1,7 @@
+import styled from 'styled-components';
+import media from './styles/media.js';
 import { ThemeProvider } from 'styled-components';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import GlobalStyle from "./styles/GlobalStyle.js";
 import theme from "./styles/theme.js";
@@ -8,7 +10,8 @@ import FixPlayer from './components/FixPlayer.jsx';
 import Home from "./pages/Home.jsx";
 import MyPlaylist from "./pages/MyPlaylist.jsx";
 import Search from "./pages/Search.jsx";
-import { BtnSideHam } from './components/Button.jsx';
+import { DefaultBtn } from './components/Button.jsx';
+import { Image } from './components/Image.jsx'; 
 
 function App() {
   const [lnbActive, setLnbActive] = useState(false);
@@ -28,13 +31,25 @@ function App() {
     setSelectedPlaylist(playlist);
   };
 
+  const Wrap = styled.div`
+    > button{
+      display: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      img{max-width: 100%;}
+      ${media.lg`display: block;`}
+    }
+  `;
   return (
     <>
     <ThemeProvider theme={theme}>
     <GlobalStyle />
       <div id="wrapper">
-        <div id="wrap">
-          <BtnSideHam className="side-ham" onClick={toggleLnb} />
+        <Wrap id="wrap">
+          <DefaultBtn onClick={toggleLnb} size="medium">
+            <Image src="menu_icon.svg" alt="menu toggle" />
+          </DefaultBtn>
           <Lnb lnbActive={lnbActive} toggleLnb={toggleLnb} />
           <div className="container">
             <Routes>
@@ -57,7 +72,7 @@ function App() {
               isSaved={myPlaylists.some((p) => p.id.playlistId === selectedPlaylist?.id.playlistId)}
             />
           </div>
-        </div>
+        </Wrap>
       </div>
     </ThemeProvider>
     </>
