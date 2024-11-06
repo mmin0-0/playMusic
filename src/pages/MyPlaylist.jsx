@@ -1,7 +1,7 @@
 import { MusicList } from '../components/Playlist.jsx';
 import { TitWrap, P } from '../components/Text.jsx';
 
-function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
+export default function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
   return (
     <section>
       <TitWrap text="나의 플레이리스트💿" />
@@ -20,5 +20,3 @@ function MyPlaylist({ onPlaylistClick, savedPlaylists }) {
     </section>
   )
 }
-
-export default MyPlaylist;

@@ -8,6 +8,7 @@ import FixPlayer from './components/FixPlayer.jsx';
 import Home from "./pages/Home.jsx";
 import MyPlaylist from "./pages/MyPlaylist.jsx";
 import Search from "./pages/Search.jsx";
+import Error from './pages/Error.jsx';
 import { DefaultBtn } from './components/Button.jsx';
 import { Image } from './components/Image.jsx'; 
 
@@ -41,6 +42,7 @@ export default function App() {
           <Lnb lnbActive={lnbActive} toggleLnb={toggleLnb} />
           <div className="container">
             <Routes>
+              <Route path="*" element={<Error />} />
               <Route path="/" element={<Home 
                 onPlaylistClick={handlePlaylistClick} 
                 savedPlaylists={myPlaylists}

@@ -4,7 +4,7 @@ import { MusicList } from '../components/Playlist.jsx';
 import { Loading, Empty } from '../components/StatusMessage.jsx';
 import { TitWrap } from "../components/Text.jsx";
 
-function Home({onPlaylistClick}) {
+export default function Home({onPlaylistClick}) {
   const { playlists, searchPlaylists, loading, error } = useYoutubeSearch();
 
   useEffect(() => {
@@ -25,5 +25,3 @@ function Home({onPlaylistClick}) {
     </section>
   )
 }
-
-export default Home;

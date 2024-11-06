@@ -4,7 +4,7 @@ import { MusicList } from '../components/Playlist.jsx';
 import { SearchBar } from "../components/SearchBar.jsx";
 import { TitWrap } from "../components/Text.jsx";
 
-function Search({onPlaylistClick}) {
+export default function Search({onPlaylistClick}) {
   const { playlists, searchPlaylists, loading, error } = useYoutubeSearch();
 
   return (
@@ -22,5 +22,3 @@ function Search({onPlaylistClick}) {
     </section>
   )
 }
-
-export default Search;
