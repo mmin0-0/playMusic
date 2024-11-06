@@ -4,10 +4,10 @@ import theme from '../styles/theme';
 const StrongStyle = styled.strong`
   font-size: ${({fontSize}) => fontSize || theme.fontSize.xl};
   font-weight: ${({fontWeight}) => fontWeight || theme.fontWeight.medium};
-  line-height: ${({lineHeight}) => lineHeight || '1.6rem'};
+  line-height: ${({$lineHeight}) => $lineHeight || '1.6'};
 `;
 export const Strong = ({children, fontSize, fontWeight, lineHeight}) => {
-  return <StrongStyle fontSize={fontSize} fontWeight={fontWeight} lineHeight={lineHeight}>{children}</StrongStyle>
+  return <StrongStyle fontSize={fontSize} fontWeight={fontWeight} $lineHeight={lineHeight}>{children}</StrongStyle>
 };
 
 const SpanStyle = styled.span`
@@ -20,11 +20,11 @@ export const Span = ({children, fontSize, fontWeight}) => {
 };
 
 const PStyle = styled.p`
-  font-size: ${({fontSize}) => fontSize || theme.fontSize.mi};
-  line-height: ${({lineHeight}) => lineHeight || '1.2'}
+  font-size: ${({ fontSize, theme }) => fontSize || theme?.fontSize?.base};
+  line-height: ${({$lineHeight}) => $lineHeight || '1.2'}
 `;
 export const P = ({children, fontSize, lineHeight}) => {
-  return <PStyle fontSize={fontSize} lineHeight={lineHeight}>{children}</PStyle>
+  return <PStyle fontSize={fontSize} $lineHeight={lineHeight}>{children}</PStyle>
 };
 
 export const TitWrap = ({text}) => {

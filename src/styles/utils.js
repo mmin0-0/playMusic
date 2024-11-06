@@ -34,8 +34,33 @@ export const ellipsis = (num = 1) => {
   }
 };
 
-type BorderDirection = 'top' | 'bottom' | 'left' | 'right' | 'all';
+export const size = (
+  width?: string, 
+  height?: string
+) => css`
+  ${width && `width: ${width};`}
+  ${height && `height: ${height};`}
+`; 
 
+type PositionType = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
+type Direction = 'top' | 'bottom' | 'left' | 'right';
+export const position = (
+  type: PositionType = 'static',
+  values: Partial<Direction, string> = {},
+  transform: string = 'none'
+) => {
+  const {top, bottom, left, right} = values;
+  return css`
+    position: ${type};
+    ${top !== undefined && `top: ${top};`}
+    ${bottom !== undefined && `bottom: ${bottom};`}
+    ${left !== undefined && `left: ${left};`}
+    ${right !== undefined && `right: ${right};`}
+    transform: ${transform}
+  `;
+};
+
+type BorderDirection = 'top' | 'bottom' | 'left' | 'right' | 'all';
 export const border = (width, style, color, direction: BorderDirection = 'all') => {
   if (direction === 'all') {
     return css`border: ${width} ${style} ${color};`;

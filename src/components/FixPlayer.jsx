@@ -3,80 +3,68 @@ import media from '../styles/media.js';
 import { Controls, DefaultBtn } from './Button.jsx';
 import { Image } from './Image';
 import { useEffect, useRef, useState } from 'react';
-import { blank, spacing, flexBox, border, ellipsis } from '../styles/utils.js';
+import { blank, spacing, flexBox, border, ellipsis, position, size } from '../styles/utils.js';
 import { P, Span } from './Text.jsx';
 
 const playing = keyframes`
   0 {transform: scale(1.2) rotate(0deg);}
   100% {transform: scale(1.2) rotate(360deg);}
 `;
-
 const PlayerWrap = styled.div`
-  width: 82rem;
-  height: 6rem;
-  position: fixed;
-  left: 18rem;
-  bottom: 2rem;
-  border-radius: 2rem;
+  ${size('82rem', '6rem')};
+  ${position('fixed', {left: '18rem', bottom: '2rem'})};
   ${blank.px(2,2)}
+  border-radius: 2rem;
   backdrop-filter: blur(20px);
   background: hsla(0, 0%, 100%, .1);
   ${media.lg`
-    width: 90%;
-    height: 8rem;
+    ${size('90%', '8rem')};
     left: 50%;
     transform: translateX(-50%);
   `}
 `;
 const PlayInfo = styled.div`
-  height: 100%;
-  ${flexBox('row', 'center', 'space-between','','2rem')};
+  ${size(undefined, '100%')};
+  ${flexBox('row', 'space-between', 'center', '','2rem')};
   }
 `;
 const PlayerInfo = styled.div`
-  width: 60%;
+  ${size('60%', undefined)};
   ${flexBox('row', 'flex-start', 'center','','2rem')};
   ${media.lg`width: 50%;`}
   .thumbnail{
-    position: relative;
-    width: 10rem;
+    ${position('relative', {}, 'translateY(-35%)')};
+    ${size('10rem', '10rem')};
     min-width: 10rem;
-    height: 10rem;
     overflow: hidden;
-    transform: translateY(-35%);
     border-radius: 50%;
     background: ${({ theme }) => theme.grey};
     ${border('1px', 'solid', ({theme}) => theme.mainColor)};
     &.on{img{animation: ${playing} 5s linear infinite;}}
     &::before{
       content: '';
-      width: 2.4rem;
-      height: 2.4rem;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      ${size('2.4rem', '2.4rem')};
+      ${position('absolute', {top: '50%', left: '50%'}, 'translate(-50%,-50%)')};
       z-index: 1;
-      transform: translate(-50%, -50%);
+      border-radius: 50%;
       background: ${({theme}) => theme.darkgrey};
     }
     img{
-      width: 100%;
-      height: 100%;
+      ${size('100%', '100%')};
       object-fit: cover;
       transform: scale(1.2);
     }
     ${media.lg`display: none;`}
-    }
+  }
   .player-info{
-    width: calc(100% - 12rem);
+    ${size('calc(100% - 12rem)', undefined)};
     ${media.lg`width: 100%;`}
     *{${ellipsis(1)};}
     span{${spacing.mt(1)}}
   }
 `;
 const PlayerControls = styled.div`
-  width: 40%;
+  ${size('40%', undefined)};
   ${flexBox('row', 'flex-end', 'center','','2rem')}
   ${media.lg`width: 50%;`}
   ${media.sm`
@@ -86,16 +74,14 @@ const PlayerControls = styled.div`
     min-height: 2rem;
     ${media.sm`width: 100%;`}
     input[type="range"]{
-      width: 100%;
-      height: 5px;
+      ${size('100%', '5px')};
       background: rgba(255,255,255, .3);
       border-radius: 1.5rem;
       -webkit-appearance: none;
       &::-webkit-slider-thumb {
-        width: 1.2rem;
-        height: 1.2rem;
+        ${size('1.2rem', '1.2rem')};
         cursor: pointer;
-        background: ${({ theme }) => theme.white};
+        background: ${({ theme }) => theme.colors.white};
         border: 0;
         outline: 0;
         border-radius: 50%;
@@ -103,36 +89,22 @@ const PlayerControls = styled.div`
       }
     }
   }
-  .player-btns{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+  .player-btns{${flexBox('row', 'flex-start', 'center', '', '1rem')};}
 `;
-
 const Empty = styled.div`
   height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 4rem;
+  ${flexBox('row', 'flex-start', 'center', '', '4rem')};
   .thumbnail{
     width: 10rem;
     height: 10rem;
     transform: translateY(-35%);
     border-radius: 50%;
     ${media.sm`display: none;`}
-    img{max-width: 100%;}
     }
   .player-info{
-      width: 30%;
-      ${media.sm`width: 100%;`}
-    p{
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 1.4rem;
-    }
+    width: 30%;
+    ${media.sm`width: 100%;`}
+    p{${ellipsis(1)};}
   }
   .player-btns{
     position: absolute;
@@ -140,12 +112,6 @@ const Empty = styled.div`
     right: 2rem;
     transform: translateY(-50%);
   }
-`;
-const EmptyWrap = styled.div`
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.grey};
 `;
 
 function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
@@ -202,7 +168,7 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
             <Image src="empty_icon.png" alt="play new" />
           </div>
           <div className="player-info">
-            <P fontSize={({theme}) => theme.fontSize.sm}>재생목록이 없습니다.</P>
+            <P fontSize="1.4rem">재생목록이 없습니다.</P>
           </div>
           <div className="player-btns">
             <Controls />
@@ -233,11 +199,11 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
         />
         <PlayerInfo>
           <div className="thumbnail" ref={thumbnailRef}>
-            <Image src={selectedPlaylist.snippet.thumbnails.default.url} alt={selectedPlaylist.snippet.title} />
+            <img src={selectedPlaylist.snippet.thumbnails.default.url} alt={selectedPlaylist.snippet.title}/>
           </div>
           <div className="player-info">
-            <P fontSize={({theme}) => theme.fontSize.sm}>{selectedPlaylist.snippet.title}</P>
-            <Span fontSize={({theme}) => theme.fontSize.xs}>{selectedPlaylist.snippet.channelTitle}</Span>
+            <P fontSize="1.4rem">{selectedPlaylist.snippet.title}</P>
+            <Span fontSize="1.4rem">{selectedPlaylist.snippet.channelTitle}</Span>
           </div>
         </PlayerInfo>
         <PlayerControls>
@@ -250,7 +216,7 @@ function FixPlayer({ selectedPlaylist, onSave, isSaved }) {
               defaultValue="50" 
               onChange={handleVolumeChange}
             />
-            <label htmlFor="volume" className="hide">볼륨</label>
+            <label htmlFor="volume" className="hide">volume</label>
           </div>
           <div className="player-btns">
             <Controls onClick={playApi} isPaused={pause} />

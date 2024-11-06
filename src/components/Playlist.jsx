@@ -91,7 +91,7 @@ const Thumbnail = ({ thumbnailUrl, title, channelTitle }) => {
   return (
     <ThumbnailWrap>
       <div className="thumbnail">
-        <Image src={thumbnailUrl} alt={title} />
+        <img src={thumbnailUrl} alt={title} />
       </div>
       <ThumbnailInfo>
         <P lineHeight="1.6">{title}</P>
