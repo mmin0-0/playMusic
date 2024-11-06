@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { DefaultBtn } from "./Button.jsx";
 import { Image } from './Image.jsx';
-import { spacing, border } from '../styles/utils.js';
+import { spacing, blank, border, size, flexBox } from '../styles/utils.js';
 import { Span, P } from './Text.jsx';
 
 const StyledMusicList = styled.ul`
@@ -10,24 +10,21 @@ const StyledMusicList = styled.ul`
   gap: clamp(2rem, 2%, 4rem);
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 `;
-
 const StyledMusicItem = styled.li`
-  background: ${({ theme }) => theme.darkgrey};
+  background: ${({ theme }) => theme.colors.darkgrey};
   border-radius: 2rem;
   ${border('1px', 'solid',({ theme }) => theme.colors.darkgrey)};
   transition: all .25s;
   &:hover{
     transform: translateY(-1rem);
-    border-color: ${({ theme }) => theme.mainColor};
+    border-color: ${({ theme }) => theme.colors.mainColor};
   }
   a{
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-    padding: 2rem;
+    ${size('100%', undefined)};
+    ${flexBox('row', 'space-between', 'flex-start', '', '1rem')};
+    ${blank.pc(2)};
   }
 `;
-
 const ThumbnailWrap = styled.div`
   width: 100%;
   .thumbnail{
@@ -41,7 +38,6 @@ const ThumbnailWrap = styled.div`
     }
   }
 `;
-
 const ThumbnailInfo = styled.div`
   ${spacing.mt(2)};
   span{
@@ -50,7 +46,6 @@ const ThumbnailInfo = styled.div`
     color: ${({ theme }) => theme.colors.grey};
   }
 `;
-
 const ControlsWrap = styled.div`
   button{&:not(:first-child){${spacing.mt(1)};}}
 `;

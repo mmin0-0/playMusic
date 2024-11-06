@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Image } from './Image.jsx';
+import { flexBox } from '../styles/utils.js';
 
 const buttonSizes = {
   small: `
@@ -37,12 +38,7 @@ export const DefaultBtn = ({className, onClick, type="button", size="small", chi
   return <DefaultBtnStyle type={type} size={size} className={className} onClick={onClick}>{children}</DefaultBtnStyle>
 };
 
-const FixControls = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-`;
+const FixControls = styled.div`${flexBox('row', 'center', 'center', '', '1rem')};`;
 
 export const Controls = ({onClick, isPaused}) => {
   return (

@@ -11,7 +11,7 @@ import Search from "./pages/Search.jsx";
 import { DefaultBtn } from './components/Button.jsx';
 import { Image } from './components/Image.jsx'; 
 
-function App() {
+export default function App() {
   const [lnbActive, setLnbActive] = useState(false);
   const toggleLnb = () => setLnbActive(!lnbActive);
 
@@ -66,5 +66,3 @@ function App() {
     </>
   );
 }
-
-export default App;

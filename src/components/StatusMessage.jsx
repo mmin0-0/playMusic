@@ -1,4 +1,6 @@
 import styled, {keyframes} from 'styled-components';
+import { Strong, P } from './Text';
+import { spacing, flexBox, size } from '../styles/utils';
 
 const loading = keyframes`
   0 {transform: translate(0, 0);}
@@ -7,20 +9,13 @@ const loading = keyframes`
 `;
 
 const LoadingWrap = styled.div`
-  strong{
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
   .load-wrap{
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: .8rem;
+  ${spacing.mt(1)};
+  ${flexBox('row', 'flex-start', 'center', '', '.8rem')};
     .line{
-      width: 1.2rem;
-      height: 1.2rem;
+    ${size('1.2rem', '1.2rem')};
       border-radius: 50%;
-      background: ${({theme}) => theme.mainColor};
+      background: ${({theme}) => theme.colors.mainColor};
       animation: ${loading} .6s linear infinite;
       &:first-child{animation-delay: .1s;}
       &:nth-child(2){animation-delay: .2s;}
@@ -32,7 +27,7 @@ const LoadingWrap = styled.div`
 export const Loading = () => {
   return (
     <LoadingWrap className="loading">
-      <strong>Loading ...</strong>
+      <Strong fontSize="1.8rem">Loading ...</Strong>
       <div className="load-wrap">
         <div className="line"></div>
         <div className="line"></div>
@@ -42,22 +37,13 @@ export const Loading = () => {
   )
 };
 
-const EmptyWrap = styled.div`
-  strong{
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
-  p{
-    display: block;
-    margin-top: 2rem;
-  }
-`;
+const EmptyWrap = styled.div`p{${spacing.mt(2)}}`;
 
 export const Empty = ({error, title}) => {
   return (
-    <EmptyWrap className="empty">
-      <strong>{title}</strong>
-      <p>Error: {error}</p>
+    <EmptyWrap>
+      <Strong fontSize="1.8rem">{title}</Strong>
+      <P>Error: {error}</P>
     </EmptyWrap>
   )
 };
