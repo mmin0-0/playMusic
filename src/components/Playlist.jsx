@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import media from '../styles/media.js';
 import styled from 'styled-components';
 import { DefaultBtn } from "./Button.jsx";
 import { Image } from './Image.jsx';
@@ -8,7 +9,9 @@ import { Span, P } from './Text.jsx';
 const StyledMusicList = styled.ul`
   display: grid;
   gap: clamp(2rem, 2%, 4rem);
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  ${media.lg`grid-template-columns: repeat(3, 1fr);`};
+  ${media.sm`grid-template-columns: 1fr;`};
 `;
 const StyledMusicItem = styled.li`
   background: ${({ theme }) => theme.colors.darkgrey};

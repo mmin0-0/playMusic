@@ -1,6 +1,4 @@
 import { css } from 'styled-components';
-import theme from './theme';
-
 const sizes = {
 	xs: 420, // phone
 	sm: 768, // tablet

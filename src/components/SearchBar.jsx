@@ -10,11 +10,11 @@ const SearchInp = styled.div`
   input{
     ${size('100%', undefined)};
     ${blank.pc(1.6)};
-    ${border('1px', 'solid', ({theme}) => theme.colors.darkgrey)};
+    ${border('1px', 'solid', ({theme}) => theme.colors.mainColor)};
     color: ${({ theme }) => theme.colors.white};
     border-radius: 3rem;
     background: ${({ theme }) => theme.colors.darkgrey};
-    &:focus{border-color: ${({ theme }) => theme.colors.mainColor};}
+    &:focus{border-width: 2px;}
   }
   button{
     ${position('absolute', {top: '50%', right: '1.6rem'}, 'translateY(-50%)')};
